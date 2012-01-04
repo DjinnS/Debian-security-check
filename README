@@ -1,5 +1,14 @@
 The simplest way to check if packages must be updated from Debian security repository
 
+This script is designed to be executed as root in a jobcron.
+
+Example:
+
+# crontab -e
+MAILTO="mysecurityemail@domain.tld"
+0 1 * * * /bin/sh /my/security/path/scripts/check.sh
+
+
 ToDo:
  - add an option to send the report by mail
 
