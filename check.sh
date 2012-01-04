@@ -22,8 +22,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-echo "The following package must be update: "
-
 apt-get update > /dev/null
 
-apt-get --just-print -V dist-upgrade | grep -i security | grep -i "inst" | cut -d " " -f2-
+toupdate=`apt-get --just-print -V dist-upgrade | grep -i security | grep -i "inst" | cut -d " " -f2-`
+
+if [ "x${toupdate}" != "x" ]; then
+        echo "The following package must be update: "
+
+        echo ${toupdate}
+fi
+
