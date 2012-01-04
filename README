@@ -1,0 +1,5 @@
+The simplest way to check if packages must be updated from Debian security repository
+
+ToDo:
+ - add an option to send the report by mail
+
