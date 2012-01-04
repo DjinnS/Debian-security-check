@@ -24,11 +24,11 @@
 
 apt-get update > /dev/null
 
-toupdate=`apt-get --just-print -V dist-upgrade | grep -i security | grep -i "inst" | cut -d " " -f2-`
+toupdate=`apt-get --just-print -V dist-upgrade | grep -i security | grep -i "inst" | cut -d " " -f2- | tr "\n" "%"`
 
 if [ "x${toupdate}" != "x" ]; then
         echo "The following package must be update: "
 
-        echo ${toupdate}
+        echo ${toupdate} | tr "%" "\n"
 fi
 
