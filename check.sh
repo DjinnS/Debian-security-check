@@ -22,13 +22,21 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+# must be changed !
+DSTMAIL="djinns@chninkel.net"
+
 apt-get update > /dev/null
 
-toupdate=`apt-get --just-print -V dist-upgrade | grep -i security | grep -i "inst" | cut -d " " -f2- | tr "\n" "%"`
+toupdate=`apt-get --just-print -V dist-upgrade | grep -i security | grep -i "inst" | cut -d " " -f2 | tr "\n" "%"`
 
 if [ "x${toupdate}" != "x" ]; then
-        echo "The following package must be update: "
 
-        echo ${toupdate} | tr "%" "\n"
+		content=`mktemp`
+        echo -e "\nThe following package must be update:\n" >> ${content}
+        echo ${toupdate} | tr "%" "\n" >> ${content}
+
+		cat ${content} | mail -s "Debian security check - report for `hostname`" ${DSTMAIL}
+
+		rm ${content}
 fi
 
